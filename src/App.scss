@@ -1,0 +1,167 @@
+.general {
+  width: 100%;
+  font-size: 40px;
+  font-weight: bold;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+position: absolute;
+  .btn {
+    margin: 0;
+    padding: 0;
+      display: block;
+      flex-direction: row-reverse;
+      background: white;
+      width: 100%;
+     
+      position: fixed;
+    text-align: right;
+    
+div{
+  font-size: 20px;
+  padding-right: 2%;
+    .basket {
+        width: 80px;
+        height: auto;
+       position: relative;
+      z-index: 1;
+      .countBasket {
+        width: 15px;
+        height: 15px;
+        position: absolute;
+        z-index: 3;
+        border-radius: 50%;
+        background: red;
+        color: black;
+      }
+    
+}
+}
+    .buy,
+    button:hover {
+      border: solid 2px rgb(0, 0, 0);
+    }
+    .buy,
+    button:active {
+      background: rgb(134, 111, 111);
+    }
+  }
+
+  text-align: center;
+  .allProd {
+    padding-top:7vh ;
+    display: flex;
+    .listProd {
+      width: 100%;
+    }
+    .selector {
+      margin: 2px;
+      width: 2px;
+      background: black;
+      height: 100vh;
+      display: none;
+    }
+    .listProd,
+    .listBasket {
+      padding: 0;
+      margin: 0;
+      li {
+        border-top: solid 1px grey;
+        margin: 5px;
+        padding-top: 5px;
+        list-style-type: none;
+        div {
+          margin-top: 5px;
+          align-items: center;
+          height: 100%;
+          text-align: center;
+          img {
+            max-width: 840px;
+            width: 100%;
+            height: auto;
+          }
+          input {
+            border-radius: 10px 10px 10px 10px;
+            width: 80px;
+          }
+          button {
+            border-radius: 10px 10px 10px 10px;
+            width: auto;
+            height: 100%;
+            width: 40px;
+          }
+
+          .buy {
+            width: 80px;
+            height: 25px;
+            text-align: center;
+            border-radius: 10px 10px 10px 10px;
+            border: solid 2px grey;
+            background: black;
+            color: white;
+          }
+          .buy:hover {
+            border: solid 2px rgb(0, 0, 0);
+          }
+          .buy:active {
+            background: rgb(134, 111, 111);
+          }
+        }
+        .weight {
+          font-size: 16px;
+          display: flex;
+          justify-content: center;
+        }
+      }
+    }
+    .listBasket {
+      overflow: auto;
+      height: 100vh;
+      justify-content: center;
+
+      align-items: center;
+      li {
+        font-size: 16px;
+      }
+      .weight .deleteFruit {
+        width: auto;
+      }
+      .empty {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        div {
+          text-align: center;
+          height: auto;
+          font-size: 30px;
+          color: rgb(0, 0, 0);
+        }
+      }
+    }
+
+    .listBasketShow {
+      display: block;
+      width: 25%;
+    }
+
+    .selectorShow {
+      display: block;
+    }
+
+    .selectorHide {
+      display: none;
+    }
+
+    .listBasketHide {
+      display: none;
+    }
+  }
+}
+button,
+.subtract,
+.add {
+  border-radius: 10px 10px 10px 10px;
+  border: solid 2px grey;
+  background: black;
+  color: white;
+}
