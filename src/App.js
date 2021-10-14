@@ -15,39 +15,42 @@ import productsDB from "./Data/productsDB";
 import './App.scss';
 import ListProd from "./components/ProductList";
 import Basket from './components/Basket';
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 
 
 function App() {
 
-    const btnBasket = document.getElementsByClassName("basket");
+    const [listBasket, setListBasket] = useState([]);
 
-     const [listBasket,setListBasket]=useState([]);
-     const [total,setTotal]=useState(0);
-    
 
     function renderBasket() {
-        // let list = document.querySelector(".listProd");
+
         let basket = document.querySelector(".listBasket");
         let selector = document.querySelector(".selector");
-      
 
-         if (basket.classList.contains("listBasketHide")) {
-
+        if (basket.classList.contains("listBasketHide")) {
 
             basket.classList.remove("listBasketHide");
             basket.classList.add("listBasketShow");
             selector.classList.add("selectorShow");
             selector.classList.remove("selectorHide");
 
-         } else {
-       
-            basket.classList.remove("listBasketShow");  
-               basket.classList.add("listBasketHide");
-               selector.classList.remove("selectorShow");
-               selector.classList.add("selectorHide");
-         }
+        } else {
 
+            basket.classList.remove("listBasketShow");
+            basket.classList.add("listBasketHide");
+            selector.classList.remove("selectorShow");
+            selector.classList.add("selectorHide");
+
+        }
+
+    }
+
+    const totalBasket = () => {
+
+        if (listBasket.length == 0) return 0;
+
+        return listBasket.reduce((accumulator, element) => accumulator + element.total, 0);
 
     }
 
@@ -56,21 +59,23 @@ function App() {
         < div className="general" >
 
             <  div className="btn" >
-           
-           
-                 <div  >total:{total} $</div>
-                 <div> <button onClick={renderBasket} className="basket" > Basket {listBasket.length>0?<span className="countBasket">{listBasket.length}</span>:""}</button>
-               </div>
-               
+
+                <div  >total: {totalBasket().toFixed(2)}$</div>
+
+                <div>
+                    <button onClick={renderBasket} className="basket" > Basket  {listBasket.length > 0 ?
+                        <span className="countBasket">{listBasket.length}</span> : ""}</button>
+                </div>
+
             </div>
 
             <div className="allProd" >
-                <ListProd setTotal={setTotal} total={total} productsDB={productsDB} setListBasket={setListBasket} listBasket={listBasket}  />
+
+                <ListProd productsDB={productsDB} setListBasket={setListBasket} listBasket={listBasket} />
 
                 <div className="selector"></div>
 
-                
-                <Basket setTotal={setTotal}  listBasket={listBasket} setListBasket={setListBasket}  />
+                <Basket listBasket={listBasket} setListBasket={setListBasket} />
 
             </div>
 
@@ -78,5 +83,4 @@ function App() {
 
     );
 }
-
 export default App;

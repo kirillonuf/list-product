@@ -3,38 +3,37 @@
   font-size: 40px;
   font-weight: bold;
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
-position: absolute;
+  position: absolute;
   .btn {
     margin: 0;
     padding: 0;
-      display: block;
-      flex-direction: row-reverse;
-      background: white;
-      width: 100%;
-     
-      position: fixed;
+    display: block;
+    flex-direction: row-reverse;
+    background: white;
+    width: 100%;
+
+    position: fixed;
     text-align: right;
-    
-div{
-  font-size: 20px;
-  padding-right: 2%;
-    .basket {
+
+    div {
+      font-size: 20px;
+      padding-right: 2%;
+      .basket {
         width: 80px;
         height: auto;
-       position: relative;
-      z-index: 1;
-      .countBasket {
-        width: 15px;
-        height: 15px;
-        position: absolute;
-        z-index: 3;
-        border-radius: 50%;
-        background: red;
-        color: black;
+        position: relative;
+        z-index: 1;
+        .countBasket {
+          width: 15px;
+          height: 15px;
+          position: absolute;
+          z-index: 3;
+          border-radius: 50%;
+          background: red;
+          color: black;
+        }
       }
-    
-}
-}
+    }
     .buy,
     button:hover {
       border: solid 2px rgb(0, 0, 0);
@@ -47,7 +46,7 @@ div{
 
   text-align: center;
   .allProd {
-    padding-top:7vh ;
+    padding-top: 7vh;
     display: flex;
     .listProd {
       width: 100%;
@@ -75,7 +74,7 @@ div{
           text-align: center;
           img {
             max-width: 840px;
-            width: 100%;
+            width: 70%;
             height: auto;
           }
           input {
@@ -116,7 +115,6 @@ div{
       overflow: auto;
       height: 100vh;
       justify-content: center;
-
       align-items: center;
       li {
         font-size: 16px;

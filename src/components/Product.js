@@ -2,67 +2,64 @@
 import React, { useEffect } from 'react';
 
 const Product = (props) => {
-    const fruit = props.el;
+
     const setListBasket = props.setListBasket;
     const listBasket = props.listBasket;
-    const setTotal = props.setTotal;
-    const total=props.total;
+    const fruit = props.el;
+
     let inputQuantity = null;
+    let objIndex = listBasket.findIndex(element => element.name === fruit.name);
+
     useEffect(() => inputQuantity = document.querySelector(`#${fruit.name}`))
-    // console.log(inputQuantity)
 
 
+    const countingTotal = (quantity, discount, price) => {
 
-    const addBasket = () => {
-        const valueQuantity = inputQuantity.value;
-        const countingTotal = () => {
-            let quantity = Number(valueQuantity)
-            console.log(quantity % 3)
-            // let discountPrice=
+        if (quantity / 3 >= 1) {
 
-            if (quantity >= 3) {
-                let discount = fruit.discount * (quantity / 3);
-                let noDiscount = fruit.price * (quantity % 3)
-                let result=(discount + noDiscount).toFixed(2)
-                setTotal(total+Number(result))
-                return result
-            }
-let result= (fruit.price * quantity).toFixed(2)
-setTotal(total+Number(result))
-            return result
+            let disc = discount * (parseInt(quantity / 3));
+            let remainder = price * (quantity % 3);
+            let result = disc + remainder;
+            return result;
+
         }
 
+        return quantity * price;
 
+    }
 
-        if (!(listBasket.length > 0)) {
+    const addBasket = () => {
+
+        const valueQuantity = inputQuantity.value; 
+
+        if (listBasket.length <= 0) {
+
             setListBasket(new Array({
                 photo: fruit.photo,
                 name: fruit.name,
                 quality: Number(valueQuantity),
                 price: fruit.price,
                 discount: fruit.discount,
-                total: Number(countingTotal())
-                //  fruit.price * Number(valueQuantity)
+                total: countingTotal(Number(valueQuantity), fruit.discount, fruit.price)
 
             }))
 
         }
         else {
 
-            let objIndex = listBasket.findIndex(element => element.name === fruit.name);
 
             if (objIndex >= 0) {
 
                 let tempLBasket = listBasket.slice();
 
                 tempLBasket[objIndex].quality += Number(valueQuantity);
-                tempLBasket[objIndex].total += Number(countingTotal());
+                tempLBasket[objIndex].total = countingTotal(tempLBasket[objIndex].quality, tempLBasket[objIndex].discount, tempLBasket[objIndex].price);
+              
                 setListBasket(tempLBasket);
 
-
             } else {
-                let tempLBasket = listBasket.slice();
 
+                let tempLBasket = listBasket.slice();
 
                 tempLBasket.push({
                     photo: fruit.photo,
@@ -70,30 +67,18 @@ setTotal(total+Number(result))
                     quality: Number(valueQuantity),
                     price: fruit.price,
                     discount: fruit.discount,
-                    total: Number(countingTotal())
+                    total: countingTotal(Number(valueQuantity), fruit.discount, fruit.price)
                 });
+
                 setListBasket(tempLBasket);
+
             }
         }
-
-        console.log(listBasket);
-
-
-        // if (listBasket.length > 0) {
-        //     console.log("listBasket");
-        //     console.log(listBasket.reduce(function (el, amount) {
-        //         return el.total + amount.total
-        //     }))
-
-        //     setTotal(listBasket.reduce(function (el, amount) {
-        //         return el.total + amount.total
-        //     }))
-        // }
-
-
-
-
     }
+
+    const increment = () => (Number(inputQuantity.value) + 0.1).toFixed(1);
+
+    const decrement = () => inputQuantity.value > 0.1 ? (Number(inputQuantity.value) - 0.1).toFixed(1) : 0.1;
 
     return (
 
@@ -113,17 +98,17 @@ setTotal(total+Number(result))
 
             <div>
 
-                <span>price:{fruit.price}$</span> / <span>availability:{fruit.availability} kg.</span>
+                <span>price:{fruit.price}$ / kg.</span>
 
             </div>
 
             <div className="weight">
 
-                <button className="subtract" onClick={() => inputQuantity.value = (Number(inputQuantity.value) - 0.1).toFixed(2)}>-</button>
+                <button className="subtract" onClick={() => inputQuantity.value = decrement()}>-</button>
 
-                <div> <input type="number" readOnly id={fruit.name} value={0.1} step="0.1" min={0.1} max={fruit.availability}></input>  </div>
+                <div> <input type="number" readOnly id={fruit.name} value={0.10} ></input>  </div>
 
-                <button className="add" onClick={() => inputQuantity.value = (Number(inputQuantity.value) + 0.1).toFixed(2)}   >+</button>
+                <button className="add" onClick={() => inputQuantity.value = increment()}   >+</button>
 
             </div>
 
