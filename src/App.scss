@@ -7,7 +7,9 @@
   .btn {
     margin: 0;
     padding: 0;
-    display: block;
+    height: 40px;
+    top: 0;
+    display: flex;
     flex-direction: row-reverse;
     background: white;
     width: 100%;
@@ -24,11 +26,16 @@
         position: relative;
         z-index: 1;
         .countBasket {
-          width: 15px;
+          padding: 2px;
+          top: -7px;
+          left: 65px;
+          min-width: 15px;
+          width: auto;
           height: 15px;
           position: absolute;
           z-index: 3;
           border-radius: 50%;
+          border: 1px solid black;
           background: red;
           color: black;
         }
@@ -48,6 +55,7 @@
   .allProd {
     padding-top: 7vh;
     display: flex;
+    justify-content: center;
     .listProd {
       width: 100%;
     }
@@ -109,6 +117,10 @@
           display: flex;
           justify-content: center;
         }
+        .warning {
+          font-size: 16px;
+          color: red;
+        }
       }
     }
     .listBasket {
@@ -127,7 +139,7 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        height: 100%;
+        height: 80vh;
         div {
           text-align: center;
           height: auto;
@@ -135,23 +147,6 @@
           color: rgb(0, 0, 0);
         }
       }
-    }
-
-    .listBasketShow {
-      display: block;
-      width: 25%;
-    }
-
-    .selectorShow {
-      display: block;
-    }
-
-    .selectorHide {
-      display: none;
-    }
-
-    .listBasketHide {
-      display: none;
     }
   }
 }

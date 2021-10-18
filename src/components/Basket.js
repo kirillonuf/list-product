@@ -18,7 +18,7 @@ const Basket = (props) => {
 
     return (
 
-        <ul className="listBasket listBasketHide">
+        <ul className="listBasket ">
 
             {listBasket.length > 0 ? listBasket.map((product, index) => <li key={index}>
 
@@ -31,9 +31,23 @@ const Basket = (props) => {
                 </div>
 
                 <div>
-                    discount: {(product.discount).toFixed(2)}$ / 3kg. <br /><br />
-                    price: {product.price}$    quantity: {(product.quality).toFixed(2)}kg.  <br />
-                    sum: {(product.total).toFixed(2)}$
+
+                    price: {product.price}$    quantity: {(product.quality).toFixed(2)}kg. <br />
+
+                    <br />
+
+                    {product.quality >= 3 && product.discount > 0 ?
+                        <div>
+                            <div>sum: ${(product.price * product.quality).toFixed(2)}$</div>
+                            <div>discount:{(product.discount).toFixed(2)}$/3kg.</div>
+
+                            <div>discounted sum: ${(product.total).toFixed(2)}$</div>
+
+                        </div> : <div>sum: ${(product.total).toFixed(2)}$</div>
+
+                    }
+
+
                 </div>
 
                 <div className="weight">
@@ -41,7 +55,7 @@ const Basket = (props) => {
                 </div>
 
             </li>) :
-               
+
                 <li className="empty">
 
                     <div>BASKET EMPTY</div>

@@ -15,36 +15,16 @@ import productsDB from "./Data/productsDB";
 import './App.scss';
 import ListProd from "./components/ProductList";
 import Basket from './components/Basket';
-import { useState, useEffect } from "react";
+import { useState} from "react";
 
+import { Route, Switch, BrowserRouter, Link } from "react-router-dom";
 
 function App() {
 
-    const [listBasket, setListBasket] = useState([]);
+    const [listBasket, setListBasket] = useState(JSON.parse(localStorage.getItem("listBasket")) || []);
 
-
-    function renderBasket() {
-
-        let basket = document.querySelector(".listBasket");
-        let selector = document.querySelector(".selector");
-
-        if (basket.classList.contains("listBasketHide")) {
-
-            basket.classList.remove("listBasketHide");
-            basket.classList.add("listBasketShow");
-            selector.classList.add("selectorShow");
-            selector.classList.remove("selectorHide");
-
-        } else {
-
-            basket.classList.remove("listBasketShow");
-            basket.classList.add("listBasketHide");
-            selector.classList.remove("selectorShow");
-            selector.classList.add("selectorHide");
-
-        }
-
-    }
+    localStorage.setItem("listBasket", JSON.stringify(listBasket));
+   
 
     const totalBasket = () => {
 
@@ -55,32 +35,42 @@ function App() {
     }
 
     return (
+        <  BrowserRouter>
+            < div className="general" >
 
-        < div className="general" >
+                <div div className="btn" >
 
-            <  div className="btn" >
+                    <div> total: {totalBasket().toFixed(2)}$</div>
 
-                <div  >total: {totalBasket().toFixed(2)}$</div>
+                    <div>
+                        <Link to="/basket"> <button className="basket" >  Basket {listBasket.length > 0 ?
+                            <span className="countBasket">{listBasket.length}</span>
+                            : ""}</button>
+                        </Link>
 
-                <div>
-                    <button onClick={renderBasket} className="basket" > Basket  {listBasket.length > 0 ?
-                        <span className="countBasket">{listBasket.length}</span> : ""}</button>
+                    </div>
+                    <div>
+
+                        <Link to="/"><button className="basket" > Product </button></Link>
+
+                    </div>
+
+                </div>
+
+                <div className="allProd">
+
+                    <Switch>
+
+                        <Route exact path="/" component={() => (<ListProd productsDB={productsDB} setListBasket={setListBasket} listBasket={listBasket} />)} />
+
+                        <Route exact path="/basket" component={() => (<Basket listBasket={listBasket} setListBasket={setListBasket} />)} />
+
+                    </Switch>
+
                 </div>
 
             </div>
-
-            <div className="allProd" >
-
-                <ListProd productsDB={productsDB} setListBasket={setListBasket} listBasket={listBasket} />
-
-                <div className="selector"></div>
-
-                <Basket listBasket={listBasket} setListBasket={setListBasket} />
-
-            </div>
-
-        </div>
-
+        </BrowserRouter>
     );
 }
 export default App;

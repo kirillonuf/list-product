@@ -20,6 +20,5 @@ const ListProd = (props) => {
         </ul>
 
     )
-
 }
 export default ListProd;
