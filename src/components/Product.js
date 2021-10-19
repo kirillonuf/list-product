@@ -10,7 +10,7 @@ const Product = (props) => {
 
     let inputQuantity = null;
     let objIndex = listBasket.findIndex(element => element.name === fruit.name);
-   
+
     useEffect(() => inputQuantity = document.querySelector(`#${fruit.name}`))
 
     const countingTotal = (quantity, discount, price) => {
@@ -112,7 +112,7 @@ const Product = (props) => {
 
                 <button className="subtract" onClick={() => inputQuantity.value = decrement()}>-</button>
 
-                <div> <input type="number" id={fruit.name} min={0.1} ></input>  </div>
+                <div> <input type="number" placeholder={0.00} step={0.1} id={fruit.name} min={0.1} ></input>  </div>
 
                 <button className="add" onClick={() => inputQuantity.value = increment()}   >+</button>
 
