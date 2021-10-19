@@ -16,7 +16,6 @@ import './App.scss';
 import ListProd from "./components/ProductList";
 import Basket from './components/Basket';
 import { useState} from "react";
-
 import { Route, Switch, BrowserRouter, Link } from "react-router-dom";
 
 function App() {
@@ -28,7 +27,7 @@ function App() {
 
     const totalBasket = () => {
 
-        if (listBasket.length == 0) return 0;
+        if (listBasket.length === 0) return 0;
 
         return listBasket.reduce((accumulator, element) => accumulator + element.total, 0);
 

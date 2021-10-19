@@ -3,7 +3,7 @@ const Basket = (props) => {
 
     const listBasket = props.listBasket;
     const setListBasket = props.setListBasket;
-    const deleteFruit = document.querySelector("deleteFruit");
+   
 
 
     function removeFruit(index) {

@@ -1,5 +1,5 @@
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 
 const Product = (props) => {
 
@@ -7,11 +7,12 @@ const Product = (props) => {
     const listBasket = props.listBasket;
     const fruit = props.el;
     const [warning, setWarning] = useState("");
+    const textInput = useRef(null);
 
     let inputQuantity = null;
     let objIndex = listBasket.findIndex(element => element.name === fruit.name);
-
-    useEffect(() => inputQuantity = document.querySelector(`#${fruit.name}`))
+   
+    useEffect(() => inputQuantity = textInput.current)
 
     const countingTotal = (quantity, discount, price) => {
 
@@ -29,7 +30,7 @@ const Product = (props) => {
 
     const addBasket = () => {
 
-        const valueQuantity = inputQuantity.value;
+        const valueQuantity = textInput.current.value;
 
         if (valueQuantity == "") setWarning("enter the correct weight of the product");
         else setWarning("");
@@ -112,7 +113,7 @@ const Product = (props) => {
 
                 <button className="subtract" onClick={() => inputQuantity.value = decrement()}>-</button>
 
-                <div> <input type="number" placeholder={0.00} step={0.1} id={fruit.name} min={0.1} ></input>  </div>
+                <div> <input type="number" ref={textInput} placeholder={0.01} step={0.1} id={fruit.name} min={0.1} ></input>  </div>
 
                 <button className="add" onClick={() => inputQuantity.value = increment()}   >+</button>
 
