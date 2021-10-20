@@ -41,9 +41,9 @@ const Basket = (props) => {
                             <div>sum: ${(product.price * product.quality).toFixed(2)}$</div>
                             <div>discount:{(product.discount).toFixed(2)}$/3kg.</div>
 
-                            <div>discounted sum: ${(product.total).toFixed(2)}$</div>
+                            <div>discounted sum: {(product.total).toFixed(2)}$</div>
 
-                        </div> : <div>sum: ${(product.total).toFixed(2)}$</div>
+                        </div> : <div>sum: {(product.total).toFixed(2)}$</div>
 
                     }
 

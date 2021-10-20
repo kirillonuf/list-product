@@ -20,7 +20,7 @@ import { Route, Switch, BrowserRouter, Link } from "react-router-dom";
 
 function App() {
 
-    const [listBasket, setListBasket] = useState(JSON.parse(localStorage.getItem("listBasket")) || []);
+    const [listBasket, setListBasket] = useState(JSON.parse(localStorage.getItem("listBasket")) ?? []);
 
     localStorage.setItem("listBasket", JSON.stringify(listBasket));
    

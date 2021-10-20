@@ -12,13 +12,13 @@ const Product = (props) => {
     let inputQuantity = null;
     let objIndex = listBasket.findIndex(element => element.name === fruit.name);
    
-    useEffect(() => inputQuantity = textInput.current)
+    useEffect(() => inputQuantity = textInput.current);
 
     const countingTotal = (quantity, discount, price) => {
 
         if (quantity / 3 >= 1 && discount > 0) {
 
-            let disc = discount * (parseInt(quantity / 3));
+            let disc = discount * (Math.floor(quantity / 3));
             let remainder = price * (quantity % 3);
             let result = disc + remainder;
             return result;
@@ -39,7 +39,7 @@ const Product = (props) => {
 
             if (listBasket.length <= 0) {
 
-                setListBasket(new Array({
+                setListBasket([{
                     photo: fruit.photo,
                     name: fruit.name,
                     quality: Number(valueQuantity),
@@ -47,7 +47,7 @@ const Product = (props) => {
                     discount: fruit.discount,
                     total: countingTotal(Number(valueQuantity), fruit.discount, fruit.price)
 
-                }))
+                }])
 
             }
             else {
